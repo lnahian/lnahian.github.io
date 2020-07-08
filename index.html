@@ -1,2 +1,37 @@
 # lnahian.github.io
 Seamless MD Application: Question 3
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Create Object from JSON String</h2>
+
+<p id="demo"></p>
+
+<script>
+var txt = '{"resourceType": "Patient", "id": "xcda", "text": {  "status": "generated", "div": "\n      \n      <p>Henry Levin the 7th</p>\n    \n    </div>" }  "identifier" : [{ "use": "usual", "type": {"coding": [{ "system": "http://hl7.org/fhir/v2/0203" "code": "MR" } ] }, "system": "urn:oid:2.16.840.1.113883.19.5",  "value": "12345" ], "active": true, "name": [ { "family": "Levin",  "given": [ "Henry" ] } "gender: "male","birthDate": "2002-09-24", "managingOrganization": {"reference": "Organization/2.16.840.1.113883.19.5", "display": "University Health Network"},"conditions": ["Diabetes","High blood pressure", "Asthma"]}'
+//Name of patient:
+
+//Organization name:
+
+//Gender:
+
+//Number of conditions they have:
+
+//List of all conditions:
+var obj = JSON.parse(txt);
+var str = "";
+
+for (var i = 0; i < obj.conditions.length; i++) {
+  str += "- " + obj.conditions[i] + "\n";
+}
+
+document.getElementById("demo").innerHTML = "name of patient:" + obj.name.given + " " + obj.name.family + "\n" +
+ "managing organization:" + obj.managingOrganization.display + "gender:" + obj.gender + "\n" + 
+ "number of conditions:" + obj.conditions.length + "\n" + 
+ "list of conditions:" + str;
+  
+</script>
+
+</body>
+</html>
