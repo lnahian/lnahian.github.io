@@ -22,10 +22,7 @@ for (var i = 0; i < obj.conditions.length; i++) {
   str += "- " + obj.conditions[i] + "\n";
 }
 
-document.getElementById("demo").innerHTML = "name of patient:" + obj.name.given + " " + obj.name.family + "\n" +
- "managing organization:" + obj.managingOrganization.display + "gender:" + obj.gender + "\n" + 
- "number of conditions:" + obj.conditions.length + "\n" + 
- "list of conditions:" + str;
+document.getElementById("demo").innerHTML = "name of patient:" + obj.name.given + " " + obj.name.family + "\n" + "managing organization:" + obj.managingOrganization.display + "gender:" + obj.gender + "\n" + "number of conditions:" + obj.conditions.length + "\n" + "list of conditions:" + str;
   
 </script>
 
