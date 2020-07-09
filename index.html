@@ -1,28 +1,55 @@
-<!DOCTYPE html>
-<html>
-<body>
+<HTML>
+<HEAD>
 
-<script>
-var txt = '{  "resourceType": "Patient",  "id": "xcda",  "text": {    "status": "generated",    "div": "\n      \n      <p>Henry Levin the 7th</p>\n    \n    </div>"  },  "identifier" : [    {      "use": "usual",      "type": {        "coding": [          {            "system": "http://hl7.org/fhir/v2/0203"            "code": "MR"          }        ]      },      "system": "urn:oid:2.16.840.1.113883.19.5",       "value": "12345"  ],  "active": true,  "name": [    {      "family": "Levin",       "given": [        "Henry"      ]    }  ],  "gender: "male",  "birthDate": "2002-09-24",   "managingOrganization": {    "reference": "Organization/2.16.840.1.113883.19.5",    "display": "University Health Network"  },  "conditions": [    "Diabetes",    "High blood pressure",     "Asthma"  ]}'
-//Name of patient:
+<TITLE>Paste FHIR Message in JSON Format</TITLE>
 
-//Organization name:
+<SCRIPT LANGUAGE="JavaScript">
 
-//Gender:
+function testResults (form) {
 
-//Number of conditions they have:
+	var validFormat = true; 
 
-//List of all conditions:
-var obj = JSON.parse(txt);
-var str = "";
+    //Creates variable to hold FHIR JSON data
+    var txt = form.inputbox.value;
+    var formattedString;
 
-for (var i = 0; i < obj.conditions.length; i++) {
-  str += "- " + obj.conditions[i] + "\n";
+    try {
+		var obj = JSON.parse(txt);
+		//Creates string of conditions in proper list format 
+			var str = '<p>';
+			for (var i = 0; i < obj.conditions.length; i++) {
+  			str += '- ' + obj.conditions[i] + '<p>';
+			}
+
+		//Information to Display 
+		//Name of patient:
+		//Organization name:
+		//Gender:
+		//Number of conditions they have:
+		//List of all conditions:
+
+		//Creates string of patient attributes to display
+		formattedString = 'Name of Patient:' + obj.name.given + ' ' + obj.name.family + '<p>' + 'Managing Organization: ' + obj.managingOrganization.display + '<p>' + 'Gender: ' + obj.gender + '<p>' + 'Number of Conditions: ' + obj.conditions.length + '<p>' + 'List of Conditions: ' + str;
+	}
+	catch (e) {
+		formattedString = "FHIR Message Incorrectly Formatted!"
+		alert(formattedString);
+	}
+
+	//Displays patient attributes 
+	document.write(formattedString);
+ 
 }
+</SCRIPT>
 
-document.getElementById("demo").innerHTML = "name of patient:" + obj.name.given + " " + obj.name.family + "\n" + "managing organization:" + obj.managingOrganization.display + "gender:" + obj.gender + "\n" + "number of conditions:" + obj.conditions.length + "\n" + "list of conditions:" + str;
-  
-</script>
+</HEAD>
+<BODY>
 
-</body>
-</html>
+<FORM NAME="myform" ACTION="" METHOD="GET">Paste FHIR Message in JSON Format: <BR>
+<INPUT TYPE="text" NAME="inputbox" VALUE=""><P>
+
+<INPUT TYPE="button" NAME="button" Value="Submit" onClick="testResults(this.form)">
+
+</FORM>
+</BODY>
+</HTML>
